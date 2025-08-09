@@ -28,7 +28,7 @@ export async function POST(req) {
     // Save CSV temporarily
     const bytes = await csvFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const tempDir = path.join(process.cwd(), "tmp");
+    const tempDir = "/tmp";
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
     const csvPath = path.join(tempDir, csvFile.name);
     await writeFile(csvPath, buffer);
