@@ -24,7 +24,7 @@ const buffer = Buffer.from(await res.arrayBuffer());
 const base_64 = buffer.toString("base64");
     const html = generate_html(records,base_64);
     await page.setContent(html,{waitUntil : 'load'});
-    const outputPath = `tmp/${records.name.replace(/\s+/g,"_")}-offer-letter.pdf`
+    const outputPath = `/tmp/${records.name.replace(/\s+/g,"_")}-offer-letter.pdf`
     await page.pdf({
         path : outputPath,
         format : 'A4',
