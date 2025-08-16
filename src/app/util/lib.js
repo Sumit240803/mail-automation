@@ -1,4 +1,5 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 import fs from 'fs/promises';
 import path from "path";
 function generate_duties(duties){
@@ -11,8 +12,10 @@ export async function generate_pdf(records){
     const tempDir = "/tmp";
     await fs.mkdir(tempDir, { recursive: true });
     const browser = await puppeteer.launch({
-      args : ["--no-sandbox","--disable-setuid-sandbox"],
-      headless : true
+      args : chromium.args,
+      defaultViewport : chromium.defaultViewport,
+      executablePath : await chromium.executablePath(),
+      headless : chromium.headless
     });
     const page = await browser.newPage();
     const imagePath = `${process.env.NEXT_PUBLIC_BASE_URL}/offer-bg-1.png`;
