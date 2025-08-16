@@ -3,18 +3,11 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 import { writeFile } from "fs/promises";
-import fetch from "node-fetch";
-import csv from "csv-parser";
 
-// Convert Google Drive share link to direct download link
-function convertGoogleDriveLink(url) {
-  const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if (match) {
-    const fileId = match[1];
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
-  }
-  return url; // if not Google Drive, return as is
-}
+import csv from "csv-parser";
+import { generate_pdf } from "@/app/util/lib";
+
+
 
 export async function POST(req) {
   try {
@@ -57,34 +50,33 @@ export async function POST(req) {
     const results = [];
 
     for (const row of rows) {
-      const { name, email, offer_letter, subject, body } = row;
+      const {name, email,subject, body, date,role,duties,post} = row;
 
-      if (!name || !email || !offer_letter || !subject || !body) {
+      if (!name || !email || !subject || !body || !date || !post || !duties || !role) {
         results.push({ email, status: "❌ Missing fields" });
         continue;
       }
-
-      // Convert and download PDF
-      const fileUrl = convertGoogleDriveLink(offer_letter);
-      const res = await fetch(fileUrl);
-      if (!res.ok) {
-        results.push({ email, status: "❌ Failed to download file" });
-        continue;
+      const record = {
+        name : name,
+        email : email,
+        subject : subject,
+        body : body,
+        date : date,
+        post : post,
+        duties : duties,
+        role : role
       }
-      const pdfBuffer = Buffer.from(await res.arrayBuffer());
-
-      const filePath = path.join(tempDir, `${name}-offer.pdf`);
-      await writeFile(filePath, pdfBuffer);
+      const filePath = await generate_pdf(record);
 
       try {
         await transport.sendMail({
           from: '"BlockseBlock" <associations@blockseblock.com>',
           to: email,
           subject,
-          html: body.replace("{name}", name),
+          html: body.replace(/\{name\}/g, name),
           attachments: [
             {
-              filename: `${name}-offer.pdf`,
+              filename: `${name}-offer-letter.pdf`,
               path: filePath,
             },
           ],
@@ -95,7 +87,7 @@ export async function POST(req) {
       }
 
       // Delete temp file
-      fs.unlinkSync(filePath);
+      try{fs.unlinkSync(filePath)}catch{};
     }
 
     // Delete temp CSV
