@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from "path";
 function generate_duties(duties){
     const gen_duties = duties.split(",").map(d => d.trim());
@@ -8,10 +8,12 @@ function generate_duties(duties){
 }
 
 export async function generate_pdf(records){
-    if(!fs.existsSync("tmp")){
-        fs.mkdir("tmp");
-    }
-    const browser = await puppeteer.launch();
+    const tempDir = "/tmp";
+    await fs.mkdir(tempDir, { recursive: true });
+    const browser = await puppeteer.launch({
+      args : ["--no-sandbox","--disable-setuid-sandbox"],
+      headless : true
+    });
     const page = await browser.newPage();
     const imagePath = `${process.env.NEXT_PUBLIC_BASE_URL}/offer-bg-1.png`;
     const res = await fetch(imagePath);
