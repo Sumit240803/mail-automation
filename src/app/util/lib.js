@@ -3,7 +3,7 @@ import chromium from "@sparticuz/chromium";
 import fs from 'fs/promises';
 import path from "path";
 function generate_duties(duties){
-    const gen_duties = duties.split(",").map(d => d.trim());
+    const gen_duties = duties.split(";").map(d => d.trim());
     console.log(gen_duties.map((d,i)=>`<li>${d}</li>`).join(""));
     return gen_duties.map((d,i)=>`<li>${d}</li>`).join("");
 }
@@ -18,9 +18,9 @@ export async function generate_pdf(records){
       headless : chromium.headless
     });
     const page = await browser.newPage();
-    const imagePath = `${process.env.NEXT_PUBLIC_BASE_URL}/offer-bg-1.png`;
-    const res = await fetch(imagePath);
-const buffer = Buffer.from(await res.arrayBuffer());
+    const imagePath = path.join(process.cwd(),"public/offer-bg-1.png");
+    //const res = await fetch(imagePath);
+const buffer=await fs.readFile(imagePath);
 const base_64 = buffer.toString("base64");
     const html = generate_html(records,base_64);
     await page.setContent(html,{waitUntil : 'load'});
