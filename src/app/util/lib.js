@@ -65,7 +65,7 @@ function generate_html(record,img){
     .content {
       white-space: pre-wrap; /* preserves line breaks */
       font-size: 12pt;
-      line-height: 1.5;
+      line-height: 1;
     }
       
       ol {
@@ -74,7 +74,7 @@ function generate_html(record,img){
   padding-left: 20px; /* control indent */
 }
 ol li {
-  margin-bottom: 5px; /* spacing between duties */
+  margin-bottom: 4px; /* spacing between duties */
 }
   </style>
 </head>
