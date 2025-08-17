@@ -50,9 +50,9 @@ export async function POST(req) {
     const results = [];
 
     for (const row of rows) {
-      const {name, email,subject, body, date,role,duties,post} = row;
+      const {name, email,subject, body, date,role,duties,post,end_date} = row;
 
-      if (!name || !email || !subject || !body || !date || !post || !duties || !role) {
+      if (!name || !email || !subject || !body || !date || !post || !duties || !role || !end_date) {
         results.push({ email, status: "❌ Missing fields" });
         continue;
       }
@@ -64,7 +64,8 @@ export async function POST(req) {
         date : date,
         post : post,
         duties : duties,
-        role : role
+        role : role,
+        end_date : end_date
       }
       const filePath = await generate_pdf(record);
 
