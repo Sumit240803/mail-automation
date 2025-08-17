@@ -65,7 +65,7 @@ function generate_html(record,img){
     .content {
       white-space: pre-wrap; /* preserves line breaks */
       font-size: 12pt;
-      line-height: 1;
+      line-height: 1.5;
     }
       
       ol {
