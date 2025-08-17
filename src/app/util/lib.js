@@ -82,7 +82,7 @@ ol li {
   <!-- Page 1 -->
   <div class="page">
     <div class="content">
-${record.date}
+<b>${record.date}</b>
 
 To ${record.name}
 
@@ -106,6 +106,30 @@ Your anticipated start date with BlockseBlock is set for ${record.date}.
   </div>
 
   <!-- Page 2 -->
+<div class ="page">
+<div class ="content">
+
+
+<b>Internship Period</b>
+
+Your Internship period will be of 45 days.The duration of training will be from ${record.date} to ${record.end_date}. Your continued employment with the Company is subject to your meeting the qualifying criteria till the end of the training and Successful completion of the training.
+
+<b>Compensation</b>
+
+This internship does not offer a stipend or salary
+
+<b>At-Will Employment</b>
+
+Please understand that your employment with Blockseblock is at-will. This means that either you or the company may terminate the employment relationship at any time , for any reason with or without notice.
+
+<b>Confidentiality and Non-Compete Agreement</b>
+
+As part of your onboarding process, you will be required to read, understand, and agree to abide by the company's confidentiality and non-compete agreement.
+
+</div>
+</div>
+
+  <!-- Page 3 -->
   <div class="page">
     <div class="content">
 <b>General Terms and Conditions</b>
