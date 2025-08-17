@@ -94,12 +94,10 @@ We are excited to present to you this formal offer of appointment for the positi
 
 <b>Position</b>
 You will be engaged as a <b>${record.post}</b>. In your new role, you will be expected to fulfill the following primary duties.
-
 <b>Primary Duties</b>
 <ol>
     ${duties}
 </ol>
-
 <b>Commencement of Internship</b>
 Your anticipated start date with BlockseBlock is set for ${record.date}.
     </div>
