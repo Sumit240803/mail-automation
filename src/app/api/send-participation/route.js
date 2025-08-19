@@ -4,6 +4,7 @@ import fs from "fs";
 import { writeFile } from "fs/promises";
 import csv from "csv-parser"
 import {generate_pdf_participation } from "@/app/util/certificate";
+import path from "path"
 export async function POST(req){
     try {
         const formData = await req.formData();
