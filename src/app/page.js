@@ -120,7 +120,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+      <div className="text-center text-2xl font-bold my-5">BlockseBlock Mail Automation System</div>
+      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Send Offer Letters via CSV
         </h2>
@@ -157,7 +158,7 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Send Participation Certificate via CSV
         </h2>
@@ -194,7 +195,7 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Send National Round Certificate via CSV
         </h2>
