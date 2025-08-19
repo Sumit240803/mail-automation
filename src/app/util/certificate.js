@@ -61,7 +61,7 @@ export async function generate_pdf_achievement(name){
     const base_64 =await fs.readFile(imagePath);
     const buffer = base_64.toString("base64");
     const html = generate_html(name, buffer);
-    const outputPath = `/tmp/${records.name.replace(/\s+/g,"_")}-achievement-certificate.pdf`
+    const outputPath = `/tmp/${name.replace(/\s+/g,"_")}-achievement-certificate.pdf`
     await page.setContent(html);
     await page.pdf({
         path : outputPath,
@@ -89,7 +89,7 @@ export async function generate_pdf_participation(name){
     const base_64 =await fs.readFile(imagePath);
     const buffer = base_64.toString("base64");
     const html = generate_html(name, buffer);
-    const outputPath = `/tmp/${records.name.replace(/\s+/g,"_")}-participation-certificate.pdf`
+    const outputPath = `/tmp/${name.replace(/\s+/g,"_")}-participation-certificate.pdf`
     await page.setContent(html);
     await page.pdf({
         path : outputPath,
