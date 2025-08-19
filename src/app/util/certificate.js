@@ -27,7 +27,7 @@ function generate_html(name , img){
     }
     .name{
       position: absolute;
-      top: 48%;
+      top: 47%;
       left: 46%;
       text-align: center;
       font-size: 28px;
