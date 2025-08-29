@@ -25,13 +25,14 @@ function generate_html(name , img){
       page-break-after: always;
       position: relative;
     }
-    .name{
+    .name {
       position: absolute;
-      top: 47%;
-      left: 42%;
+      top: 51%;
+      left: 50%;
+      transform: translateX(-50%);
       text-align: center;
-      font-size: 28px;
-    }
+      font-size:28px;
+      }
   </style>
 </head>
 <body>
@@ -47,7 +48,7 @@ function generate_html(name , img){
 
 
 
-export async function generate_pdf_achievement(name){
+export async function generate_pdf_openxai(name){
     const browser =await puppeteer.launch(
         {
             args : chromium.args,
@@ -57,11 +58,11 @@ export async function generate_pdf_achievement(name){
         }
     );
     const page = await browser.newPage();
-    const imagePath = path.join(process.cwd(),"public/achievement.jpg")
+    const imagePath = path.join(process.cwd(),"public/openxai.jpg")
     const base_64 =await fs.readFile(imagePath);
     const buffer = base_64.toString("base64");
     const html = generate_html(name, buffer);
-    const outputPath = `/tmp/${name.replace(/\s+/g,"_")}-achievement-certificate.pdf`
+    const outputPath = `/tmp/${name.replace(/\s+/g,"_")}-certificate.pdf`
     await page.setContent(html);
     await page.pdf({
         path : outputPath,
@@ -75,30 +76,3 @@ export async function generate_pdf_achievement(name){
     return outputPath;
 }
 
-export async function generate_pdf_participation(name){
-    const browser =await puppeteer.launch(
-        {
-            args : chromium.args,
-            defaultViewport : chromium.defaultViewport,
-            executablePath : await chromium.executablePath(),
-            headless : chromium.headless
-        }
-    );
-    const page = await browser.newPage();
-    const imagePath = path.join(process.cwd(),"public/participation.jpg")
-    const base_64 =await fs.readFile(imagePath);
-    const buffer = base_64.toString("base64");
-    const html = generate_html(name, buffer);
-    const outputPath = `/tmp/${name.replace(/\s+/g,"_")}-participation-certificate.pdf`
-    await page.setContent(html);
-    await page.pdf({
-        path : outputPath,
-        preferCSSPageSize : true,
-        printBackground : true,
-        width : '297mm',
-        height : '210mm',
-        margin: { top: "0", right: "0", bottom: "0", left: "0" }
-    });
-    await browser.close();
-    return outputPath;
-}
