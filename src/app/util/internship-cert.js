@@ -16,8 +16,8 @@ function generate_html(name , img){
       font-family: sans-serif;
     }
     .page {
-      height: 210mm;   
-      width: 297mm;
+      width: 210mm;   
+      height: 297mm;
       background:url("${bg_style}") no-repeat center center;
       background-size: contain;
       padding: 40mm 25mm; 
