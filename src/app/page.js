@@ -2,127 +2,61 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [sending, setSending] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [status, setStatus] = useState([]);
-  const [sendingParticipation, setSendingParticipation] = useState(false);
-  const [progressParticipation, setProgressParticipation] = useState(0);
-  const [statusParticipation, setStatusParticipation] = useState([]);
-  const [sendingAchievement, setSendingAchievement] = useState(false);
-  const [progressAchievement, setProgressAchievement] = useState(0);
-  const [statusAchievement, setStatusAchievement] = useState([]);
+  const[sendingIntern,setSendingIntern] = useState(false);
+  const[progressIntern,setProgressIntern] = useState(0);
+  const[statusIntern,setStatusIntern] = useState([]);
+
+
+
+  const[sendingFirstMilestone,setSendingFirstMilestone] = useState(false);
+  const[progressFirstMilestone,setProgressFirstMilestone] = useState(0);
+  const[statusFirstMilestone,setStatusFirstMilestone] = useState([]);
+
 
   const[sendingOpenXAI,setSendingOpenXAI] = useState(false);
   const[progressOpenXAI,setProgressOpenXAI] = useState(0);
   const[statusOpenXAI,setStatusOpenXAI] = useState([]);
 
-  const sendAll = async () => {
-    const fileInput = document.querySelector("#csvUpload");
+
+
+  const sendAllIntern = async () => {
+    const fileInput = document.querySelector("#csvUploadInternship");
     const file = fileInput.files[0];
     if (!file) return alert("Please upload a CSV first");
 
     const formData = new FormData();
     formData.append("csv", file);
 
-    setSending(true);
-    setProgress(0);
-    setStatus([]);
+    sendingIntern(true);
+    progressIntern(0);
+    statusIntern([]);
 
     try {
-      const res = await fetch("/api/send-offer", {
+      const res = await fetch("/api/send-internship-certificate", {
         method: "POST",
         body: formData,
       });
 
       const data = await res.json();
       if (data.success) {
-        setStatus(data.results.map((r) => `${r.status} ${r.email || ""}`));
+        setStatusIntern(data.results.map((r) => `${r.status} ${r.email || ""}`));
       } else {
-        setStatus([`❌ Failed: ${data.error}`]);
+        setStatusIntern([`❌ Failed: ${data.error}`]);
       }
     } catch (err) {
-      setStatus([`❌ Error: ${err.message}`]);
+      setStatusIntern([`❌ Error: ${err.message}`]);
     }
 
-    setSending(false);
-    setProgress(100);
+    setSendingIntern(false);
+    setProgressIntern(100);
 
     setTimeout(() => {
-      setProgress(0);
+      setProgressIntern(0);
     }, 3000);
   };
-  const sendAllParticipation = async () => {
-    const fileInput = document.querySelector("#csvUploadParticipation");
-    const file = fileInput.files[0];
-    if (!file) return alert("Please upload a CSV first");
 
-    const formData = new FormData();
-    formData.append("csv", file);
-
-    setSendingParticipation(true);
-    setProgressParticipation(0);
-    setStatusParticipation([]);
-
-    try {
-      const res = await fetch("/api/send-participation", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setStatusParticipation(data.results.map((r) => `${r.status} ${r.email || ""}`));
-      } else {
-        setStatusParticipation([`❌ Failed: ${data.error}`]);
-      }
-    } catch (err) {
-      setStatusParticipation([`❌ Error: ${err.message}`]);
-    }
-
-    setSendingParticipation(false);
-    setProgressParticipation(100);
-
-    setTimeout(() => {
-      setProgressParticipation(0);
-    }, 3000);
-  };
-  const sendAllAchievement = async () => {
-    const fileInput = document.querySelector("#csvUploadAchievement");
-    const file = fileInput.files[0];
-    if (!file) return alert("Please upload a CSV first");
-
-    const formData = new FormData();
-    formData.append("csv", file);
-
-    setSendingAchievement(true);
-    setProgressAchievement(0);
-    setStatusAchievement([]);
-
-    try {
-      const res = await fetch("/api/send-achievement", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setStatusAchievement(data.results.map((r) => `${r.status} ${r.email || ""}`));
-      } else {
-        setStatusAchievement([`❌ Failed: ${data.error}`]);
-      }
-    } catch (err) {
-      setStatusAchievement([`❌ Error: ${err.message}`]);
-    }
-
-    setSendingAchievement(false);
-    setProgressAchievement(100);
-
-    setTimeout(() => {
-      setProgressAchievement(0);
-    }, 3000);
-  };
   const sendAllOpenXAI = async () => {
-    const fileInput = document.querySelector("#csvUploadOpenXAi");
+    const fileInput = document.querySelector("#csvUploadOpenxai");
     const file = fileInput.files[0];
     if (!file) return alert("Please upload a CSV first");
 
@@ -134,7 +68,7 @@ export default function Home() {
     setStatusOpenXAI([]);
 
     try {
-      const res = await fetch("/api/send-openxai", {
+      const res = await fetch("/api/send-openxai-two", {
         method: "POST",
         body: formData,
       });
@@ -155,129 +89,145 @@ export default function Home() {
     setTimeout(() => {
       setProgressOpenXAI(0);
     }, 3000);
-  };
+  }
 
+
+
+
+  const sendAllMilestone = async () => {
+    const fileInput = document.querySelector("#csvUploadMilestone");
+    const file = fileInput.files[0];
+    if (!file) return alert("Please upload a CSV first");
+
+    const formData = new FormData();
+    formData.append("csv", file);
+
+    sendingFirstMilestone(true);
+    progressFirstMilestone(0);
+    statusFirstMilestone([]);
+
+    try {
+      const res = await fetch("/api/first-milestone", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setStatusFirstMilestone(data.results.map((r) => `${r.status} ${r.email || ""}`));
+      } else {
+        setStatusFirstMilestone([`❌ Failed: ${data.error}`]);
+      }
+    } catch (err) {
+      setStatusFirstMilestone([`❌ Error: ${err.message}`]);
+    }
+
+    setSendingFirstMilestone(false);
+    setProgressFirstMilestone(100);
+
+    setTimeout(() => {
+      setProgressFirstMilestone(0);
+    }, 3000);
+  };
+  
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="text-center text-2xl font-bold my-5">BlockseBlock Mail Automation System</div>
+
       <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          Send Offer Letters via CSV
+          Send Internship Certificate via CSV
         </h2>
 
         <input
-          id="csvUpload"
+          id="csvUploadInternship"
           type="file"
           accept=".csv"
           className="mb-4"
         />
 
         <button
-          onClick={sendAll}
-          disabled={sending}
+          onClick={sendAllIntern}
+          disabled={sendingIntern}
           className="px-4 py-2 bg-gray-800 text-white rounded-md text-sm hover:bg-gray-700 disabled:opacity-50"
         >
-          {sending ? "Sending..." : "Send All"}
+          {sendingIntern ? "Sending..." : "Send All"}
         </button>
 
-        {sending && (
+        {sendingIntern && (
           <div className="mt-6 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
             <div
               className="h-full bg-gray-700 transition-all duration-300"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${progressIntern}%` }}
             ></div>
           </div>
         )}
 
-        {status.length > 0 && (
+        {statusIntern.length > 0 && (
           <div className="mt-4 space-y-1 text-sm text-gray-700">
-            {status.map((msg, i) => (
+            {statusIntern.map((msg, i) => (
               <p key={i}>{msg}</p>
             ))}
           </div>
         )}
       </div>
+
+
+
+
+
+
       <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          Send Participation Certificate via CSV
+          Send First Milestone Certificate via CSV
         </h2>
 
         <input
-          id="csvUploadParticipation"
+          id="csvUploadMilestone"
           type="file"
           accept=".csv"
           className="mb-4"
         />
 
         <button
-          onClick={sendAllParticipation}
-          disabled={sendingParticipation}
+          onClick={sendAllMilestone}
+          disabled={sendingFirstMilestone}
           className="px-4 py-2 bg-gray-800 text-white rounded-md text-sm hover:bg-gray-700 disabled:opacity-50"
         >
-          {sendingParticipation ? "Sending..." : "Send All"}
+          {sendingFirstMilestone ? "Sending..." : "Send All"}
         </button>
 
-        {sendingParticipation && (
+        {sendingFirstMilestone && (
           <div className="mt-6 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
             <div
               className="h-full bg-gray-700 transition-all duration-300"
-              style={{ width: `${progressParticipation}%` }}
+              style={{ width: `${progressFirstMilestone}%` }}
             ></div>
           </div>
         )}
 
-        {statusParticipation.length > 0 && (
+        {statusFirstMilestone.length > 0 && (
           <div className="mt-4 space-y-1 text-sm text-gray-700">
-            {statusParticipation.map((msg, i) => (
+            {statusFirstMilestone.map((msg, i) => (
               <p key={i}>{msg}</p>
             ))}
           </div>
         )}
       </div>
+
+
+
+
+
+
+
       <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          Send National Round Certificate via CSV
+          Send 5 Day Training Program Certificate via CSV
         </h2>
 
         <input
-          id="csvUploadAchievement"
-          type="file"
-          accept=".csv"
-          className="mb-4"
-        />
-
-        <button
-          onClick={sendAllAchievement}
-          disabled={sendingAchievement}
-          className="px-4 py-2 bg-gray-800 text-white rounded-md text-sm hover:bg-gray-700 disabled:opacity-50"
-        >
-          {sendingAchievement ? "Sending..." : "Send All"}
-        </button>
-
-        {sendingAchievement && (
-          <div className="mt-6 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gray-700 transition-all duration-300"
-              style={{ width: `${progressAchievement}%` }}
-            ></div>
-          </div>
-        )}
-
-        {statusAchievement.length > 0 && (
-          <div className="mt-4 space-y-1 text-sm text-gray-700">
-            {statusAchievement.map((msg, i) => (
-              <p key={i}>{msg}</p>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          Send OpenXAI Certificate via CSV
-        </h2>
-
-        <input
-          id="csvUploadOpenXAi"
+          id="csvUploadOpenxai"
           type="file"
           accept=".csv"
           className="mb-4"
