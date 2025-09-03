@@ -27,9 +27,9 @@ export default function Home() {
     const formData = new FormData();
     formData.append("csv", file);
 
-    sendingIntern(true);
-    progressIntern(0);
-    statusIntern([]);
+    setSendingIntern(true);
+    setProgressIntern(0);
+    setStatusIntern([]);
 
     try {
       const res = await fetch("/api/send-internship-certificate", {
@@ -102,9 +102,9 @@ export default function Home() {
     const formData = new FormData();
     formData.append("csv", file);
 
-    sendingFirstMilestone(true);
-    progressFirstMilestone(0);
-    statusFirstMilestone([]);
+    setSendingFirstMilestone(true);
+    setProgressFirstMilestone(0);
+    setStatusFirstMilestone([]);
 
     try {
       const res = await fetch("/api/first-milestone", {
