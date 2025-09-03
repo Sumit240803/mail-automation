@@ -55,7 +55,7 @@ export async function POST(req){
                 await transport.sendMail({
                   from: '"BlockseBlock" <associations@blockseblock.com>',
                   to: email,
-                  subject : "Certificate of Achievement from OpenxAI Bootcamp",
+                  subject : "Certificate of Milestone from OpenxAI Bootcamp",
                   html: `<!doctype html>
 <html lang="en">
   <head>

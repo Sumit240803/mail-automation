@@ -19,40 +19,40 @@ function generate_html(name , img){
       width: 210mm;   
       height: 297mm;
       background:url("${bg_style}") no-repeat center center;
-      background-size: contain;
+      background-size: cover;
       padding: 40mm 25mm; 
       box-sizing: border-box;
       page-break-after: always;
       position: relative;
     }
-    .name{
-      width: 63%;
-      margin: auto;
+     .name{
+  
      
-      font-size: 12px;
+      font-size: 17px;
+      line-height: 1.5;
     }
     .heading{
       display: flex;
-      justify-content: space-between;
-      padding-left: 180px;
-      padding-right: 250px;
-      font-size: 20px;
+      gap: 120px;
+      font-size: 22px;
+      padding-top: 19px;
+      
     }
     h2{
       text-align: center;
+      text-decoration: underline;
     }
     .footer{
-      font-size: 15px;
-      padding-left: 170px;
-      padding-top: 10px;
-      width: 20%;
+      font-size: 17px;
+      
+      width: 90%;
     }
   </style>
 </head>
 <body>
 <div class="page">
     <div class="heading">
-      <span class="sub">Sub: Internship Certificate</span>
+      <span class="sub">Internship Certificate</span>
       <span class="date">July 18th, 2025</span>
     </div>
 
