@@ -107,8 +107,8 @@ export async function generate_internship_certificate(name){
         path : outputPath,
         preferCSSPageSize : true,
         printBackground : true,
-        width : '297mm',
-        height : '210mm',
+        width : '210mm',
+        height : '297mm',
         margin: { top: "0", right: "0", bottom: "0", left: "0" }
     });
     await browser.close();
