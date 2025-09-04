@@ -27,7 +27,7 @@ function generate_html(name , img){
     }
      .name{
   
-      padding-top : 20px;
+      padding-top : 15px;
       font-size: 17px;
       line-height: 1.5;
     }
@@ -39,7 +39,7 @@ function generate_html(name , img){
       
     }
     h2{
-      padding-top: 57px;
+      padding-top: 60px;
       text-align: center;
       text-decoration: underline;
     }
