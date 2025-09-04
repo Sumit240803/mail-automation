@@ -53,7 +53,7 @@ function generate_html(name , img){
 <div class="page">
     <div class="heading">
       <span class="sub">Internship Certificate</span>
-      <span class="date">July 18th, 2025</span>
+      <span class="date">August 31st, 2025</span>
     </div>
 
     <h2>TO WHOM IT MAY CONCERN</h2>
@@ -68,18 +68,6 @@ function generate_html(name , img){
       <p>We would like to extend our best wishes to <b>${name}</b> for a successful future, and we are confident that they will continue to excel in their chosen field.</p>
 
       <p>If you have any further questions regarding <b>${name}</b> internship or performance at BlockseBlock, please do not hesitate to reach out to us.</p>
-    </div>
-    <div class="footer">
-
-      <div class="signature">
-        Regards <br>
-        <strong>Sahil</strong>
-      </div>
-      
-      <div class="contact">
-        <p>Contact here: 89682-32722</p>
-        <p>Email: associations@blockseblock.com</p>
-      </div>
     </div>
   </div>
 </body>
@@ -97,7 +85,7 @@ export async function generate_internship_certificate(name){
         }
     );
     const page = await browser.newPage();
-    const imagePath = path.join(process.cwd(),"public/intern.jpg")
+    const imagePath = path.join(process.cwd(),"public/intern-update.jpg")
     const base_64 =await fs.readFile(imagePath);
     const buffer = base_64.toString("base64");
     const html = generate_html(name, buffer);
