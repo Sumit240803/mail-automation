@@ -76,7 +76,7 @@ export async function POST(req){
       <h1>Congratulations, ${name}! 🎉</h1>
       <p>
         We are proud to award you this <span class="highlight">Certificate of Achievement</span> 
-        for the successful completion of the <strong>Hands-on Bootcamp on Artificial Intelligence</strong>.
+        for the successful completion of the <strong>5-Days Hands-on Training Program on Artificial Intelligence</strong>.
       </p>
       <p>
         This certificate recognizes your commitment to applied learning and professional excellence 
