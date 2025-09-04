@@ -27,7 +27,7 @@ function generate_html(name , img){
     }
      .name{
   
-     
+      padding-top : 25px;
       font-size: 17px;
       line-height: 1.5;
     }
