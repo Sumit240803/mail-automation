@@ -51,10 +51,7 @@ function generate_html(name , img){
 </head>
 <body>
 <div class="page">
-    <div class="heading">
-      <span class="sub">Internship Certificate</span>
-      <span class="date">August 31st, 2025</span>
-    </div>
+    
 
     <h2>TO WHOM IT MAY CONCERN</h2>
 
