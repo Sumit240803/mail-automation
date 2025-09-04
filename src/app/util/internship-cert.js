@@ -39,7 +39,7 @@ function generate_html(name , img){
       
     }
     h2{
-      padding-top: 39px;
+      padding-top: 47px;
       text-align: center;
       text-decoration: underline;
     }
