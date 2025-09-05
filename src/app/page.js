@@ -13,6 +13,11 @@ export default function Home() {
   const[statusFirstMilestone,setStatusFirstMilestone] = useState([]);
 
 
+  const[sendingOpenXAI2,setSendingOpenXAI2] = useState(false);
+  const[progressOpenXAI2,setProgressOpenXAI2] = useState(0);
+  const[statusOpenXAI2,setStatusOpenXAI2] = useState([]);
+
+
   const[sendingOpenXAI,setSendingOpenXAI] = useState(false);
   const[progressOpenXAI,setProgressOpenXAI] = useState(0);
   const[statusOpenXAI,setStatusOpenXAI] = useState([]);
@@ -55,6 +60,42 @@ export default function Home() {
     }, 3000);
   };
 
+  const sendAllOpenXAI2 = async () => {
+    const fileInput = document.querySelector("#csvUploadOpenxai2");
+    const file = fileInput.files[0];
+    if (!file) return alert("Please upload a CSV first");
+
+    const formData = new FormData();
+    formData.append("csv", file);
+
+    setSendingOpenXAI2(true);
+    setProgressOpenXAI2(0);
+    setStatusOpenXAI2([]);
+
+    try {
+      const res = await fetch("/api/send-openxai-two", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setStatusOpenXAI2(data.results.map((r) => `${r.status} ${r.email || ""}`));
+      } else {
+        setStatusOpenXAI2([`❌ Failed: ${data.error}`]);
+      }
+    } catch (err) {
+      setStatusOpenXAI2([`❌ Error: ${err.message}`]);
+    }
+
+    setSendingOpenXAI2(false);
+    setProgressOpenXAI2(100);
+
+    setTimeout(() => {
+      setProgressOpenXAI2(0);
+    }, 3000);
+  }
+
   const sendAllOpenXAI = async () => {
     const fileInput = document.querySelector("#csvUploadOpenxai");
     const file = fileInput.files[0];
@@ -68,7 +109,7 @@ export default function Home() {
     setStatusOpenXAI([]);
 
     try {
-      const res = await fetch("/api/send-openxai-two", {
+      const res = await fetch("/api/send-openxai", {
         method: "POST",
         body: formData,
       });
@@ -228,6 +269,45 @@ export default function Home() {
 
         <input
           id="csvUploadOpenxai"
+          type="file"
+          accept=".csv"
+          className="mb-4"
+        />
+
+        <button
+          onClick={sendAllOpenXAI2}
+          disabled={sendingOpenXAI2}
+          className="px-4 py-2 bg-gray-800 text-white rounded-md text-sm hover:bg-gray-700 disabled:opacity-50"
+        >
+          {sendingOpenXAI2 ? "Sending..." : "Send All"}
+        </button>
+
+        {sendingOpenXAI2 && (
+          <div className="mt-6 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gray-700 transition-all duration-300"
+              style={{ width: `${progressOpenXAI2}%` }}
+            ></div>
+          </div>
+        )}
+
+        {statusOpenXAI2.length > 0 && (
+          <div className="mt-4 space-y-1 text-sm text-gray-700">
+            {statusOpenXAI2.map((msg, i) => (
+              <p key={i}>{msg}</p>
+            ))}
+          </div>
+        )}
+      </div>
+
+
+      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
+        <h2 className="text-xl font-semibold text-gray-800 mb-6">
+          Send OpenXAI Certificate via CSV
+        </h2>
+
+        <input
+          id="csvUploadOpenXAi"
           type="file"
           accept=".csv"
           className="mb-4"
