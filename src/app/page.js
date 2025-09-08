@@ -97,7 +97,7 @@ export default function Home() {
   }
 
   const sendAllOpenXAI = async () => {
-    const fileInput = document.querySelector("#csvUploadOpenxai");
+    const fileInput = document.querySelector("#csvUploadOpenXAi");
     const file = fileInput.files[0];
     if (!file) return alert("Please upload a CSV first");
 
