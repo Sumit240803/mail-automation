@@ -268,7 +268,7 @@ export default function Home() {
         </h2>
 
         <input
-          id="csvUploadOpenxai"
+          id="csvUploadOpenxai2"
           type="file"
           accept=".csv"
           className="mb-4"
