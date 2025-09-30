@@ -41,14 +41,14 @@ export async function POST(req){
 
         const results = [];
         for (const row of rows) {
-              const {name, email} = row;
-        
-              if (!name || !email ) {
+              const {name, email,startDate,endDate,role} = row;
+
+              if (!name || !email || !startDate || !endDate || !role) {
                 results.push({ email, status: "❌ Missing fields" });
                 continue;
               }
-              
-              const filePath = await generate_internship_certificate(name);
+
+              const filePath = await generate_internship_certificate(name, startDate, endDate, role);
         
               try {
                 await transport.sendMail({
