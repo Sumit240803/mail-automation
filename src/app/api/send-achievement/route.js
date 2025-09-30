@@ -41,9 +41,9 @@ export async function POST(req){
 
         const results = [];
         for (const row of rows) {
-              const {name, email,subject, body} = row;
-        
-              if (!name || !email || !subject || !body ) {
+              const {name, email} = row;
+
+              if (!name || !email) {
                 results.push({ email, status: "❌ Missing fields" });
                 continue;
               }
@@ -54,8 +54,42 @@ export async function POST(req){
                 await transport.sendMail({
                   from: '"BlockseBlock" <associations@blockseblock.com>',
                   to: email,
-                  subject,
-                  html: body.replace(/\{name\}/g, name),
+                  subject : "Certificate of WCHL Regional Round",
+                  html: `
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Certificate of Achievement</title>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; background:#f9fafb; margin:0; padding:0; }
+      .container { max-width:600px; margin:40px auto; background:#ffffff; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+      h1 { color:#111827; font-size:22px; margin-bottom:16px; }
+      p { color:#374151; font-size:15px; line-height:1.6; }
+      .highlight { font-weight:bold; color:#111827; }
+      .footer { font-size:13px; color:#6b7280; margin-top:30px; text-align:center; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Congratulations, ${name}! 🎉</h1>
+ 
+  <p>
+    Congratulations on successfully completing the WCHL Regional Round! Your dedication and hard work have truly paid off, and we are thrilled to recognize your achievement.
+  </p>
+  <p>
+    Please find your official certificate attached as a PDF. You can keep it for your records or 
+    share it to showcase your accomplishment.
+  </p>
+  <p class="footer">
+    Wishing you continued success in your career! 🚀
+  </p>
+    </div>
+  </body>
+</html>
+                  
+                  `,
                   attachments: [
                     {
                       filename: `${name}-achievement-certificate.pdf`,
