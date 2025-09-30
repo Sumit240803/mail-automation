@@ -73,7 +73,7 @@ export default function Home() {
     setStatusOpenXAI2([]);
 
     try {
-      const res = await fetch("/api/send-openxai-two", {
+      const res = await fetch("/api/send-achievement", {
         method: "POST",
         body: formData,
       });
@@ -264,7 +264,7 @@ export default function Home() {
 
       <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
-          Send 5 Day Training Program Certificate via CSV
+          Send WCHL Regional Certificate via CSV
         </h2>
 
         <input
