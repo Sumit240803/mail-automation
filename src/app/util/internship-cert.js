@@ -32,12 +32,12 @@ function generate_html(name , img, startDate, endDate,role){
       font-size: 17px;
       line-height: 1.5;
     }
-    .heading{
+     .heading{
       display: flex;
       gap: 120px;
-      font-size: 22px;
-      padding-top: 19px;
-      
+      font-size: 20px;
+      padding-top: 10px;
+      font:bold
     }
     h2{
       padding-top: 60px;
@@ -54,7 +54,10 @@ function generate_html(name , img, startDate, endDate,role){
 <body>
 <div class="page">
     
-
+  <div class="heading">
+    <div>Sub : Internship Certificate</div>
+    <div>Date: ${new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</div>
+  </div>
     <h2>TO WHOM IT MAY CONCERN</h2>
 
     <div class="name">
