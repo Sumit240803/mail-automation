@@ -28,9 +28,9 @@ function generate_html(name , img, startDate, endDate,role){
     }
      .name{
   
-      padding-top : 15px;
+      padding-top : 10px;
       font-size: 17px;
-      line-height: 1.5;
+      line-height: 1.25;
     }
      .heading{
       display: flex;
@@ -40,7 +40,7 @@ function generate_html(name , img, startDate, endDate,role){
       font:bold
     }
     h2{
-      padding-top: 40px;
+      padding-top: 20px;
       text-align: center;
       text-decoration: underline;
     }
