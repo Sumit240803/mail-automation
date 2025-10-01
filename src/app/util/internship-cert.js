@@ -61,7 +61,7 @@ function generate_html(name , img, startDate, endDate,role){
     <h2>TO WHOM IT MAY CONCERN</h2>
 
     <div class="name">
-      <p>This is to certify that <b>${name}</b> has successfully completed an internship at Blockseblock as a ${role} . The internship was held between ${startDate} to ${endDate}, with a total duration of 45 days.</p>
+      <p>This is to certify that <b>${name}</b> has successfully completed an internship at Blockseblock as ${role}. The internship was held between ${startDate} to ${endDate}, with a total duration of 45 days.</p>
 
       <p>During this time, they showed tremendous dedication, enthusiasm, and a willingness to learn. <b>${name}</b> actively participated in various projects and tasks, gaining practical experience. They are a valuable team member and made a positive impact during their time with us.</p>
 
@@ -87,7 +87,7 @@ export async function generate_internship_certificate(name, startDate, endDate, 
         }
     );
     const page = await browser.newPage();
-    const imagePath = path.join(process.cwd(),"public/intern.jpg")
+    const imagePath = path.join(process.cwd(),"public/intern.png")
     const base_64 =await fs.readFile(imagePath);
     const buffer = base_64.toString("base64");
     const html = generate_html(name, buffer,startDate,endDate,role);
