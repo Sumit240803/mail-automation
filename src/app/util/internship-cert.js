@@ -21,7 +21,7 @@ function generate_html(name , img, startDate, endDate,role){
       height: 297mm;
       background:url("${bg_style}") no-repeat center center;
       background-size: cover;
-      padding: 40mm 25mm; 
+      padding: 40mm 15mm; 
       box-sizing: border-box;
       page-break-after: always;
       position: relative;
@@ -36,11 +36,11 @@ function generate_html(name , img, startDate, endDate,role){
       display: flex;
       gap: 120px;
       font-size: 20px;
-      padding-top: 10px;
+      padding-top: 40px;
       font:bold
     }
     h2{
-      padding-top: 20px;
+      padding-top: 5%;
       text-align: center;
       text-decoration: underline;
     }
@@ -87,7 +87,7 @@ export async function generate_internship_certificate(name, startDate, endDate, 
         }
     );
     const page = await browser.newPage();
-    const imagePath = path.join(process.cwd(),"public/intern.png")
+    const imagePath = path.join(process.cwd(),"public/intern.jpg")
     const base_64 =await fs.readFile(imagePath);
     const buffer = base_64.toString("base64");
     const html = generate_html(name, buffer,startDate,endDate,role);
