@@ -9,7 +9,7 @@ function generate_html(name , img){
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Offer Letter</title>
+  <title>WCHL Regional Round</title>
   <style>
     body {
       margin: 0;
