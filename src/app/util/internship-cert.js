@@ -28,7 +28,7 @@ function generate_html(name , img, startDate, endDate,role){
     }
      .name{
   
-      padding-top : 10px;
+      margin-top : 20px;
       font-size: 17px;
       line-height: 1.25;
     }
