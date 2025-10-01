@@ -40,7 +40,7 @@ function generate_html(name , img, startDate, endDate,role){
       font:bold
     }
     h2{
-      padding-top: 60px;
+      padding-top: 40px;
       text-align: center;
       text-decoration: underline;
     }
