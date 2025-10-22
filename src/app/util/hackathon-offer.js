@@ -1,5 +1,5 @@
 
-export function generate_offer_email(ProjectName, HackathonName, CourseLink, EnquiryForm){
+export function generate_offer_email(projectName, hackathonName, courseLink, enquiryForm){
  
     return `
 <!doctype html>
@@ -103,16 +103,16 @@ export function generate_offer_email(ProjectName, HackathonName, CourseLink, Enq
 <body>
   <div class="container">
     <div class="header">
-      <h1>“${ProjectName}” can be more than a project — it can start your career </h1>
+      <h1>“${projectName}” can be more than a project — it can start your career </h1>
     </div>
 
     <div class="content">
       <p>Hi <strong>[First Name]</strong>,</p>
-      <p>You did an amazing job with <strong>“${ProjectName}”</strong> during <strong>${HackathonName}</strong></p>
+      <p>You did an amazing job with <strong>“${projectName}”</strong> during <strong>${hackathonName}</strong></p>
       <p>Our BSB team personally reviewed your project (yep, every single part ), and we loved the creativity and intent behind it. It’s got huge potential — just needs a few technical refinements to reach that career-building level.</p>
 
       <div class="highlight">
-        <p><strong>While reviewing “${ProjectName},” here’s what we noticed:</strong></p>
+        <p><strong>While reviewing “${projectName},” here’s what we noticed:</strong></p>
         <ul>
           <li>The smart contract logic needs better optimization and modularity.</li>
           <li>Integration between frontend and blockchain components can be smoother.</li>
@@ -124,12 +124,12 @@ export function generate_offer_email(ProjectName, HackathonName, CourseLink, Enq
       <p>That’s why we’ve built a hands-on Web development / Python course designed around these exact gaps. It’s fully practical, mentor-led, and helps you fix the real issues we found — step by step.</p>
 
       <div class="btn-group">
-        <a href="${CourseLink}" class="btn btn-primary">Get 50% Off — Enrol Now</a>
-        <a href="${EnquiryForm}" class="btn btn-outline">Enquire / Ask a Question</a>
+        <a href="${courseLink}" class="btn btn-primary">Get 50% Off — Enrol Now</a>
+        <a href="${enquiryForm}" class="btn btn-outline">Enquire / Ask a Question</a>
       </div>
 
-      <p>Since you were part of <strong>${HackathonName}</strong>, you’re getting an exclusive <strong>50% off</strong>, plus lifetime mentor support to keep improving your dev journey </p>
-      <p>Once you’ve applied these upgrades, send us your improved version of <strong>“${ProjectName}”</strong>. We’d love to check it again and see your progress — and will recommend your profile which is best suited as per your tech skills.</p>
+      <p>Since you were part of <strong>${hackathonName}</strong>, you’re getting an exclusive <strong>50% off</strong>, plus lifetime mentor support to keep improving your dev journey </p>
+      <p>Once you’ve applied these upgrades, send us your improved version of <strong>“${projectName}”</strong>. We’d love to check it again and see your progress — and will recommend your profile which is best suited as per your tech skills.</p>
 
       <p>Keep coding. Keep building. Keep growing.</p>
       <p>Regards,<br>Team <strong>BSB</strong></p>
