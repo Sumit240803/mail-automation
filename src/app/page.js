@@ -22,7 +22,9 @@ export default function Home() {
   const[progressOpenXAI,setProgressOpenXAI] = useState(0);
   const[statusOpenXAI,setStatusOpenXAI] = useState([]);
 
-
+  const [sendingHackathonOffer,setSendingOfferEmail] = useState(false);
+  const [progressHackathonOffer,setProgressOfferEmail] = useState(0);
+  const [statusHackathonOffer,setStatusOfferEmail] = useState([]);
 
   const sendAllIntern = async () => {
     const fileInput = document.querySelector("#csvUploadInternship");
@@ -129,6 +131,43 @@ export default function Home() {
 
     setTimeout(() => {
       setProgressOpenXAI(0);
+    }, 3000);
+  }
+
+
+  const sendAllOfferEmail = async()=>{
+    const fileInput = document.querySelector("#csvUploadHackathonOffer");
+    const file = fileInput.files[0];
+    if (!file) return alert("Please upload a CSV first");
+
+    const formData = new FormData();
+    formData.append("csv", file);
+
+    setSendingOfferEmail(true);
+    setProgressOfferEmail(0);
+    setStatusOfferEmail([]);
+
+    try {
+      const res = await fetch("/api/send-hackathon-offer", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setStatusOfferEmail(data.results.map((r) => `${r.status} ${r.email || ""}`));
+      } else {
+        setStatusOfferEmail([`❌ Failed: ${data.error}`]);
+      }
+    } catch (err) {
+      setStatusOfferEmail([`❌ Error: ${err.message}`]);
+    }
+
+    setSendingOfferEmail(false);
+    setProgressOfferEmail(100);
+
+    setTimeout(() => {
+      setProgressOfferEmail(0);
     }, 3000);
   }
 
@@ -333,6 +372,46 @@ export default function Home() {
         {statusOpenXAI.length > 0 && (
           <div className="mt-4 space-y-1 text-sm text-gray-700">
             {statusOpenXAI.map((msg, i) => (
+              <p key={i}>{msg}</p>
+            ))}
+          </div>
+        )}
+      </div>
+
+
+
+      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm p-6 my-2">
+        <h2 className="text-xl font-semibold text-gray-800 mb-6">
+          Send Hackathon Offer Email via CSV
+        </h2>
+
+        <input
+          id="csvUploadHackathonOffer"
+          type="file"
+          accept=".csv"
+          className="mb-4"
+        />
+
+        <button
+          onClick={sendAllOfferEmail}
+          disabled={sendingHackathonOffer}
+          className="px-4 py-2 bg-gray-800 text-white rounded-md text-sm hover:bg-gray-700 disabled:opacity-50"
+        >
+          {sendingHackathonOffer ? "Sending..." : "Send All"}
+        </button>
+
+        {sendingHackathonOffer && (
+          <div className="mt-6 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gray-700 transition-all duration-300"
+              style={{ width: `${progressHackathonOffer}%` }}
+            ></div>
+          </div>
+        )}
+
+        {statusHackathonOffer.length > 0 && (
+          <div className="mt-4 space-y-1 text-sm text-gray-700">
+            {statusHackathonOffer.map((msg, i) => (
               <p key={i}>{msg}</p>
             ))}
           </div>
