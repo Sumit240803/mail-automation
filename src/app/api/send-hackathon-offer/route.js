@@ -42,7 +42,7 @@ export async function POST(req){
 
         const results = [];
         for (const row of rows) {
-              const {projectName, hackathonName, courseLink, enquiryForm} = row;
+              const {projectName, hackathonName, courseLink, enquiryForm, email} = row;
 
               if (!projectName || !hackathonName || !courseLink || !enquiryForm) {
                 results.push({ email, status: "❌ Missing fields" });
