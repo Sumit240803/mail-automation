@@ -50,6 +50,7 @@ export async function POST(req){
               }
 
               const myHtml = generate_offer_email(projectName, hackathonName, courseLink, enquiryForm);
+              console.log("Generated HTML for:", email);
 
               try {
                 await transport.sendMail({
