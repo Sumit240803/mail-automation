@@ -1,5 +1,5 @@
 
-export function generate_offer_email(projectName, hackathonName, courseLink, enquiryForm, feedbackPoints,course,offer){
+export function generate_offer_email(projectName, hackathonName, courseLink, feedbackPoints,course,offer){
  
     return `
 <!doctype html>
@@ -29,7 +29,7 @@ export function generate_offer_email(projectName, hackathonName, courseLink, enq
 
     <p>
       <a href="${courseLink}">Get ${offer}% Off — Enrol Now</a><br>
-      <a href="${enquiryForm}">Enquire / Ask a Question</a>
+     
     </p>
 
     <p>Since you were part of ${hackathonName}, you’re getting an exclusive 50% off, plus lifetime mentor support to keep improving your dev journey.</p>

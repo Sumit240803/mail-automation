@@ -42,15 +42,15 @@ export async function POST(req){
 
         const results = [];
         for (const row of rows) {
-              const {projectName, hackathonName, courseLink, enquiryForm, email, feedbackPoints, course, offer} = row;
+              const {projectName, hackathonName, courseLink, email, feedbackPoints, course, offer} = row;
               console.log("Processing row for:", row);
 
-              if (!projectName || !hackathonName || !courseLink || !enquiryForm || !email || !feedbackPoints || !course || !offer) {
+              if (!projectName || !hackathonName || !courseLink ||  !email || !feedbackPoints || !course || !offer) {
                 results.push({ email, status: "❌ Missing fields" });
                 continue;
               }
 
-              const myHtml = generate_offer_email(projectName, hackathonName, courseLink, enquiryForm, feedbackPoints,course, offer);
+              const myHtml = generate_offer_email(projectName, hackathonName, courseLink, feedbackPoints,course, offer);
               console.log("Generated HTML for:", myHtml);
 
               try {
