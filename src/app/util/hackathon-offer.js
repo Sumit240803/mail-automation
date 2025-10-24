@@ -107,7 +107,7 @@ export function generate_offer_email(projectName, hackathonName, courseLink, enq
     </div>
 
     <div class="content">
-      <p>Hi <strong>[First Name]</strong>,</p>
+      <p>Hi</p>
       <p>You did an amazing job with <strong>“${projectName}”</strong> during <strong>${hackathonName}</strong></p>
       <p>Our BSB team personally reviewed your project (yep, every single part ), and we loved the creativity and intent behind it. It’s got huge potential — just needs a few technical refinements to reach that career-building level.</p>
 
@@ -122,7 +122,7 @@ export function generate_offer_email(projectName, hackathonName, courseLink, enq
       <p>That’s why we’ve built a hands-on ${course} course designed around these exact gaps. It’s fully practical, mentor-led, and helps you fix the real issues we found — step by step.</p>
 
       <div class="btn-group">
-        <a href="${courseLink}" class="btn btn-primary">Get ${offer}% Off — Enrol Now</a>
+        <a href="${courseLink}" class="btn btn-outline">Get ${offer}% Off — Enrol Now</a>
         <a href="${enquiryForm}" class="btn btn-outline">Enquire / Ask a Question</a>
       </div>
 
