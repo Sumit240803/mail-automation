@@ -1,5 +1,5 @@
 
-export function generate_offer_email(projectName, hackathonName, courseLink, enquiryForm){
+export function generate_offer_email(projectName, hackathonName, courseLink, enquiryForm, feedbackPoints,course,offer){
  
     return `
 <!doctype html>
@@ -112,19 +112,17 @@ export function generate_offer_email(projectName, hackathonName, courseLink, enq
       <p>Our BSB team personally reviewed your project (yep, every single part ), and we loved the creativity and intent behind it. It’s got huge potential — just needs a few technical refinements to reach that career-building level.</p>
 
       <div class="highlight">
-        <p><strong>While reviewing “${projectName},” here’s what we noticed:</strong></p>
+        <p><strong>While reviewing "${projectName}," here's what we noticed:</strong></p>
         <ul>
-          <li>The smart contract logic needs better optimization and modularity.</li>
-          <li>Integration between frontend and blockchain components can be smoother.</li>
-          <li>Error handling & testing can be improved for better stability.</li>
+          ${feedbackPoints ? feedbackPoints.split(',').map(point => `<li>${point.trim()}</li>`).join('\n          ') : '<li>The project shows great potential with room for technical improvements.</li>'}
         </ul>
       </div>
 
       <p>These are very common challenges developers face early in their journey — and mastering them is exactly what takes your project from college-level to industry-ready.</p>
-      <p>That’s why we’ve built a hands-on Web development / Python course designed around these exact gaps. It’s fully practical, mentor-led, and helps you fix the real issues we found — step by step.</p>
+      <p>That’s why we’ve built a hands-on ${course} course designed around these exact gaps. It’s fully practical, mentor-led, and helps you fix the real issues we found — step by step.</p>
 
       <div class="btn-group">
-        <a href="${courseLink}" class="btn btn-primary">Get 50% Off — Enrol Now</a>
+        <a href="${courseLink}" class="btn btn-primary">Get ${offer}% Off — Enrol Now</a>
         <a href="${enquiryForm}" class="btn btn-outline">Enquire / Ask a Question</a>
       </div>
 

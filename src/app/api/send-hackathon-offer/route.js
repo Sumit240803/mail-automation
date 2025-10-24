@@ -16,7 +16,7 @@ export async function POST(req){
         const bytes = await csvFile.arrayBuffer();
         const buffer = Buffer.from(bytes);
         
-        const tempDir = "/tmp"
+        const tempDir = path.join(process.cwd(), "tmp")
         if(!fs.existsSync(tempDir)){
            await fs.promises.mkdir(tempDir,{recursive : true});
         }
@@ -42,21 +42,21 @@ export async function POST(req){
 
         const results = [];
         for (const row of rows) {
-              const {projectName, hackathonName, courseLink, enquiryForm, email} = row;
+              const {projectName, hackathonName, courseLink, enquiryForm, email, feedbackPoints, course, offer} = row;
 
-              if (!projectName || !hackathonName || !courseLink || !enquiryForm) {
+              if (!projectName || !hackathonName || !courseLink || !enquiryForm || !email || !feedbackPoints || !course || !offer) {
                 results.push({ email, status: "❌ Missing fields" });
                 continue;
               }
 
-              const myHtml = generate_offer_email(projectName, hackathonName, courseLink, enquiryForm);
+              const myHtml = generate_offer_email(projectName, hackathonName, courseLink, enquiryForm, feedbackPoints,course, offer);
               console.log("Generated HTML for:", email);
 
               try {
                 await transport.sendMail({
                   from: '"BlockseBlock" <associations@blockseblock.com>',
                   to: email,
-                  subject : "BlockseBlock: Special Offer to Level Up Your Hackathon Project",
+                  subject : `“${projectName}” can be more than a project — it can start your career`,
                   html: myHtml
                 });
                 results.push({ email, status: "✅ Sent" });
