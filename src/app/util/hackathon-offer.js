@@ -10,7 +10,7 @@ export function generate_offer_email(projectName, hackathonName, courseLink, fee
     <title>BSB — Project Review</title>
   </head>
   <body>
-    <h2>“${projectName}” can be more than a project — it can start your career</h2>
+   
 
     <p>Hi</p>
 
