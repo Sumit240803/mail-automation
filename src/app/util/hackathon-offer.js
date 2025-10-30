@@ -28,13 +28,12 @@ export function generate_offer_email(projectName, hackathonName, courseLink, fee
     <p>That’s why we’ve built a hands-on ${course} course designed around these exact gaps. It’s fully practical, mentor-led, and helps you fix the real issues we found — step by step.</p>
 
     <p>
-      <a href="${courseLink}">Get ${offer}% Off — Enrol Now</a><br>
+      <a href="${courseLink}">Check the details here</a><br>
      
     </p>
 
-    <p>Since you were part of ${hackathonName}, you’re getting an exclusive 50% off, plus lifetime mentor support to keep improving your dev journey.</p>
-
-    <p>Once you’ve applied these upgrades, send us your improved version of “${projectName}”. We’d love to check it again and see your progress — and will recommend your profile which is best suited as per your tech skills.</p>
+    <p>Your participation in ${projectName} opens doors to continued learning opportunities with dedicated mentor support to help you progress further in your development journey.
+</p>
 
     <p>Keep coding. Keep building. Keep growing.</p>
 
