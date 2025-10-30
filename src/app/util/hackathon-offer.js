@@ -38,6 +38,8 @@ export function generate_offer_email(projectName, hackathonName, courseLink, fee
     <p>Keep coding. Keep building. Keep growing.</p>
 
     <p>Regards,<br>Team BSB</p>
+    <p>Mob: +91 9872016991</p>
+
   </body>
 </html>
 
