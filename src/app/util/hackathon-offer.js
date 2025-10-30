@@ -32,7 +32,7 @@ export function generate_offer_email(projectName, hackathonName, courseLink, fee
      
     </p>
 
-    <p>Your participation in ${projectName} opens doors to continued learning opportunities with dedicated mentor support to help you progress further in your development journey.
+    <p>Your participation opens doors to continued learning opportunities with dedicated mentor support to help you progress further in your development journey.
 </p>
 
     <p>Keep coding. Keep building. Keep growing.</p>
