@@ -20,7 +20,7 @@ export function generate_offer_email(projectName, hackathonName, courseLink, fee
 
     <p><strong>While reviewing "${projectName}," here's what we noticed:</strong></p>
     <ul>
-      ${feedbackPoints ? feedbackPoints.split(',').map(point => `<li>${point.trim()}</li>`).join('\n') : '<li>The project shows great potential with room for technical improvements.</li>'}
+      ${feedbackPoints}
     </ul>
 
     <p>These are very common challenges developers face early in their journey — and mastering them is exactly what takes your project from college-level to industry-ready.</p>
